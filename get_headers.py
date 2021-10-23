@@ -32,7 +32,7 @@ class get_headers:
 
             return '__dcfduid=' + __dcfduid + '; ' + '__sdcfduid=' + __sdcfduid
 
-        except requests.exceptions: return None
+        except requests.exceptions.ProxyError: return None
 
 
     def fingerprint(self) -> str:
@@ -65,4 +65,4 @@ class get_headers:
             else:
                 self.fingerprint()
 
-        except requests.exceptions: return None
+        except requests.exceptions.ProxyError: return None
