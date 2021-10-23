@@ -13,17 +13,15 @@ import string
 import time
 import requests
 
-if os.name == 'nt': clear = lambda: subprocess.call('cls', shell=True)
-if os.name != 'nt': clear = lambda: subprocess.call('clear', shell=True)
+clear = lambda: subprocess.call(
+    'cls' if os.name == 'nt' else 'clear', shell=True
+)
 
 
 def TitleTask():
-    # os.system('mode 100, 30')
     while True:
         os.system('title [AngelGenerator]'); sleep(1.5)
         os.system('title [TrolledTooMuch]'); sleep(1.5)
-
-    #    if KeyboardInterrupt: os._exit(-1)
 
 
 class Generate:
@@ -154,7 +152,7 @@ class Generate:
                           self.purple + '[' + self.white + time.strftime('%H:%M:%S', time.localtime()) + 
                           self.purple + ']' + ' Captcha Fail: ' + self.white + f'{fail}')
 
-        except requests.exceptions: pass
+        except requests.exceptions.ProxyError: return None
 
 
     def ascii(self):
